@@ -3,6 +3,7 @@
  */
 //http对象,通过它可以创建服务器,设置端口号...
 var http = require('http');
+var https = require('https');
 //url对象, 可以解析url中的内容
 var url = require('url');
 // 查询参数对象,可以处理查询参数
@@ -24,7 +25,8 @@ http.createServer(function (req,res) {
     //用来接收数据的变量
     var resultData = "";
 
-    http.get(queryObj.myUrl,function (request) {
+    https.get(queryObj.myUrl,function (request) {
+        console.log('>>>>>>>>',queryObj)
 
         //设置编码格式
         request.setEncoding('utf8');
@@ -47,6 +49,7 @@ http.createServer(function (req,res) {
             res.end(str);
         });
     }).on('error',function (e) {
+        console.log('>>>> error',e)
         //请求数据失败,把错误信息发送给请求者
         res.end(e.message);
     });
