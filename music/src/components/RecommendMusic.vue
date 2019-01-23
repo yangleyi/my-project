@@ -1,10 +1,10 @@
 <template>
   <div class="recommend">
     <div v-for="item in recom" v-bind:key="item.id">
-      <p>
-        <b>{{ item.creator.nickname }}</b> 
-        <i>{{ item.name | idenName }}</i>
-      </p>
+      <div class="item" @click="getItem(item)">
+        <img :src="item.coverImgUrl" class="item-img">
+        <p class="item-name"><b>{{ item.name | idenName }}</b></p>
+      </div>
     </div>
   </div>
 </template>
@@ -19,12 +19,11 @@ export default {
   props: {},
   data() {
     return {
-      default: 'hahaha',
       recom: []
     }
   },
   created() {
-    let myurl = `${api.base}?type=search&search_type=1000&s=推荐歌单`
+    let myurl = `${api.base}?type=search&search_type=1000&s=每日推荐`
     let url = `http://localhost:3000?myUrl=${escape(myurl)}`
     let obj = {
       url: url,
@@ -39,10 +38,23 @@ export default {
   },
   filters: {
     idenName(str) {
-      return JSON.parse(`"${str}"`)
+      // return JSON.parse(`"${str}"`)
+      return unescape(str.replace(/\\/g, '%'))
     }
   },
   methods: {
+    getItem(obj) {
+      let myurl = `${api.base}?type=playlist&id=${obj.id}`
+      let url = `http://localhost:3000?myUrl=${escape(myurl)}`
+      console.log('>>>>>> get item', obj)
+      jsonp(url, {}, (err, data) => {
+        if (err) {
+          console.log('>>>>> get list err',err)
+        } else {
+          console.log('>>>>>>> list', JSON.parse(data))
+        }
+      })
+    },
     userFetch(obj) {
       fetch(obj.url, obj)
         .then(res => {
@@ -108,4 +120,28 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .recommend {
+    display: inline-flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .item {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+  }
+  .item-img {
+    width: 100%;
+    max-height: 160px;
+  }
+  .item-name {
+    text-align: left;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
+
 
