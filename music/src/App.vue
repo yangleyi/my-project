@@ -1,8 +1,16 @@
 <template>
   <div id="app">
+    <!--    
     <img alt="Vue logo" src="./assets/logo.png">
-<!--    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <RecommendMusic />
+    <HelloWorld msg="Welcome to Your Vue.js App"/> 
+    -->
+    <el-container>
+      <el-header>Header</el-header>
+      <el-main>
+        <recommend-music/>
+      </el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
   </div>
 </template>
 
@@ -20,12 +28,31 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  html, body, #app, .el-container {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    margin: 0;
+  }
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .el-header, .el-footer {
+    background: #F56C6C;
+  }
+  
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .el-main {
+    
+  }
 </style>

@@ -1,9 +1,14 @@
 <template>
-  <div class="recommend">
+  <div class="recommend" 
+    v-loading="!recom"
+    element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background=""
+  >
     <div v-for="item in recom" v-bind:key="item.id">
       <div class="item" @click="getItem(item)">
         <img :src="item.coverImgUrl" class="item-img">
-        <p class="item-name"><b>{{ item.name | idenName }}</b></p>
+        <div class="item-name"><b>{{ item.name | idenName }}</b></div>
       </div>
     </div>
   </div>
@@ -19,7 +24,7 @@ export default {
   props: {},
   data() {
     return {
-      recom: []
+      recom: null
     }
   },
   created() {
@@ -125,15 +130,17 @@ export default {
     display: inline-flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 100%;
+    min-height: 200px;
   }
   .item {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin-bottom: 10px;
   }
   .item-img {
     width: 100%;
-    max-height: 160px;
+    max-height: 120px;
   }
   .item-name {
     text-align: left;
