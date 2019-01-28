@@ -53,10 +53,13 @@ export default {
     color: #fff;
     text-align: center;
   }
-  .el-header, .el-footer {
+  .el-header {
     background: #F56C6C;
   }
   
+  .el-footer {
+    background: rgb(241, 243, 244);
+  }
   .el-aside {
     background-color: #D3DCE6;
     color: #333;
@@ -65,6 +68,6 @@ export default {
   }
   
   .el-main {
-    
+    /* background: rgb(241, 243, 244); */
   }
 </style>
