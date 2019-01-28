@@ -5,24 +5,32 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/> 
     -->
     <el-container>
+
       <el-header>Header</el-header>
+
       <el-main>
-        <recommend-music/>
+        <block-item type="每日推荐"/>
       </el-main>
-      <el-footer>Footer</el-footer>
+
+      <el-footer>
+        <music-control src="https://api.imjad.cn/cloudmusic/?type=song&id=30064351&br=128000"/>
+      </el-footer>
+
     </el-container>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import RecommendMusic from './components/RecommendMusic.vue'
+import BlockItem from './components/BlockItem.vue'
+import MusicControl from './components/MusicControl.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
-    RecommendMusic
+    BlockItem,
+    MusicControl
   }
 }
 </script>

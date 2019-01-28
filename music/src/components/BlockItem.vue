@@ -20,15 +20,17 @@ import $ from 'jquery'
 import axios from 'axios'
 import jsonp from 'jsonp'
 export default {
-  name: 'RecommendMusic',
-  props: {},
+  name: 'BlockItem',
+  props: {
+    type: String
+  },
   data() {
     return {
       recom: null
     }
   },
   created() {
-    let myurl = `${api.base}?type=search&search_type=1000&s=每日推荐`
+    let myurl = `${api.base}?type=search&search_type=1000&s=${this.type}`
     let url = `http://localhost:3000?myUrl=${escape(myurl)}`
     let obj = {
       url: url,
