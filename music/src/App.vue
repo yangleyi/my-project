@@ -13,7 +13,7 @@
       </el-main>
 
       <el-footer>
-        <music-control src="https://api.imjad.cn/cloudmusic/?type=song&id=30064351&br=128000"/>
+        <music-control/>
       </el-footer>
 
     </el-container>
@@ -48,7 +48,11 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+  .el-header {
+    line-height: 60px;
+    color: #fff;
+    text-align: center;
+  }
   .el-header, .el-footer {
     background: #F56C6C;
   }

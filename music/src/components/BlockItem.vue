@@ -54,11 +54,16 @@ export default {
       let myurl = `${api.base}?type=playlist&id=${obj.id}`
       let url = `http://localhost:3000?myUrl=${escape(myurl)}`
       console.log('>>>>>> get item', obj)
-      jsonp(url, {}, (err, data) => {
+      jsonp(url, {}, (err, res) => {
         if (err) {
           console.log('>>>>> get list err',err)
         } else {
-          console.log('>>>>>>> list', JSON.parse(data))
+          let data = JSON.parse(res)
+          console.log('>>>>>>> list', data)
+          let id = data.playlist.tracks[0].id
+          this.$store.state.id = id
+          this.$store.commit('getMusic')
+          console.log('>>>>> want change store', this.$store.state)
         }
       })
     },
